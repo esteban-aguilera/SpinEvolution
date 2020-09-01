@@ -6,23 +6,23 @@ import os
 from initial_conditions import unidimensional_lattice
 
 
-np.random.seed(420)
+np.random.seed(60)
 
 
 # --------------------------------------------------------------------------------
 # main
 # --------------------------------------------------------------------------------
 def main():
-    lat = unidimensional_lattice(J=1, alpha=1e-2, dt=1e-15, icond='rand')
+    lat = unidimensional_lattice(J=1, alpha=1e-1, dt=1e-4, icond='rand')
 
     mkdir('img')
     filenames = []
-    for i in range(150):
-        for _ in range(10000):
+    for i in range(100):
+        for _ in range(50000):
             lat.time_step()
         
-        # filenames.append(f'img/example-{i}.png')
-        # lat.plot(S=10, filename=filenames[-1])
+        filenames.append(f'img/example-{i}.png')
+        lat.plot(S=10, filename=filenames[-1])
             
     print( np.array(lat.get_M()) )
     if(len(filenames) > 0):

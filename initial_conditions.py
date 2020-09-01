@@ -11,8 +11,8 @@ from spin_evolution import SpinLattice
 # --------------------------------------------------------------------------------
 # functions
 # --------------------------------------------------------------------------------
-def unidimensional_lattice(num=2, m=1, S=1, a=1, Phi=0, J=1, alpha=1e-2,
-                           gamma=1e-7, dt=1e-13, icond='rand'):
+def unidimensional_lattice(num=2, m=1, S=1, a=1, Phi=0, J=1, alpha=1e-5,
+                           gamma=1e-7, dt=1e-3, icond='rand'):
     """Returns a unidimensional lattice.
 
     Parameters
@@ -100,7 +100,7 @@ def unidimensional_lattice(num=2, m=1, S=1, a=1, Phi=0, J=1, alpha=1e-2,
     idto[num-1] = 1
     
     # set magnetic field, nearest neighbors and Elastic coupling.
-    B_arr[:,2] = 0
+    B_arr[:,2] = 1
     for n in range(1,num-1):
         nn_arr[n,:] = np.array([n-1, n+1])
         for l in range(num_nn):
