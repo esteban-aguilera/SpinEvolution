@@ -5637,7 +5637,7 @@ static void __pyx_f_14spin_evolution_11SpinLattice_11SpinLattice_time_step_c(str
  *             if(self.idto[n] == -1):
  *                 linalg3D.cross(self.M_arr[n], self.h_arr[n], h)             # <<<<<<<<<<<<<<
  *                 for k in range(3):
- *                     h[k] = self.h_arr[n][k] - self.alpha_arr[n]*h[k]
+ *                     h[k] = self.h_arr[n][k] + self.alpha_arr[n]*h[k]
  */
       __pyx_f_14spin_evolution_5utils_8linalg3D_cross((__pyx_v_self->M_arr[__pyx_v_n]), (__pyx_v_self->h_arr[__pyx_v_n]), __pyx_v_h);
 
@@ -5645,7 +5645,7 @@ static void __pyx_f_14spin_evolution_11SpinLattice_11SpinLattice_time_step_c(str
  *             if(self.idto[n] == -1):
  *                 linalg3D.cross(self.M_arr[n], self.h_arr[n], h)
  *                 for k in range(3):             # <<<<<<<<<<<<<<
- *                     h[k] = self.h_arr[n][k] - self.alpha_arr[n]*h[k]
+ *                     h[k] = self.h_arr[n][k] + self.alpha_arr[n]*h[k]
  * 
  */
       for (__pyx_t_5 = 0; __pyx_t_5 < 3; __pyx_t_5+=1) {
@@ -5654,11 +5654,11 @@ static void __pyx_f_14spin_evolution_11SpinLattice_11SpinLattice_time_step_c(str
         /* "spin_evolution/SpinLattice.pyx":259
  *                 linalg3D.cross(self.M_arr[n], self.h_arr[n], h)
  *                 for k in range(3):
- *                     h[k] = self.h_arr[n][k] - self.alpha_arr[n]*h[k]             # <<<<<<<<<<<<<<
+ *                     h[k] = self.h_arr[n][k] + self.alpha_arr[n]*h[k]             # <<<<<<<<<<<<<<
  * 
  *                     # displacement time step.
  */
-        (__pyx_v_h[__pyx_v_k]) = (((__pyx_v_self->h_arr[__pyx_v_n])[__pyx_v_k]) - ((__pyx_v_self->alpha_arr[__pyx_v_n]) * (__pyx_v_h[__pyx_v_k])));
+        (__pyx_v_h[__pyx_v_k]) = (((__pyx_v_self->h_arr[__pyx_v_n])[__pyx_v_k]) + ((__pyx_v_self->alpha_arr[__pyx_v_n]) * (__pyx_v_h[__pyx_v_k])));
 
         /* "spin_evolution/SpinLattice.pyx":262
  * 
@@ -5722,15 +5722,15 @@ static void __pyx_f_14spin_evolution_11SpinLattice_11SpinLattice_time_step_c(str
  *                     for j in range(3):
  *                         Lh_ij = self.L[0][i][j]*h[0] + self.L[1][i][j]*h[1] + \             # <<<<<<<<<<<<<<
  *                             self.L[2][i][j]*h[2]
- *                         A[i][j] = self.delta[i][j] + 0.5*self.dt*Lh_ij/hbar
+ *                         A[i][j] = self.delta[i][j] - 0.5*self.dt*Lh_ij/hbar
  */
           __pyx_v_Lh_ij = ((((((__pyx_v_self->L[0])[__pyx_v_i])[__pyx_v_j]) * (__pyx_v_h[0])) + ((((__pyx_v_self->L[1])[__pyx_v_i])[__pyx_v_j]) * (__pyx_v_h[1]))) + ((((__pyx_v_self->L[2])[__pyx_v_i])[__pyx_v_j]) * (__pyx_v_h[2])));
 
           /* "spin_evolution/SpinLattice.pyx":271
  *                         Lh_ij = self.L[0][i][j]*h[0] + self.L[1][i][j]*h[1] + \
  *                             self.L[2][i][j]*h[2]
- *                         A[i][j] = self.delta[i][j] + 0.5*self.dt*Lh_ij/hbar             # <<<<<<<<<<<<<<
- *                         b[i] += (self.delta[i][j] - 0.5*self.dt*Lh_ij/hbar)*self.M_arr[n][j]
+ *                         A[i][j] = self.delta[i][j] - 0.5*self.dt*Lh_ij/hbar             # <<<<<<<<<<<<<<
+ *                         b[i] += (self.delta[i][j] + 0.5*self.dt*Lh_ij/hbar)*self.M_arr[n][j]
  * 
  */
           __pyx_t_8 = ((0.5 * __pyx_v_self->dt) * __pyx_v_Lh_ij);
@@ -5738,12 +5738,12 @@ static void __pyx_f_14spin_evolution_11SpinLattice_11SpinLattice_time_step_c(str
             PyErr_SetString(PyExc_ZeroDivisionError, "float division");
             __PYX_ERR(0, 271, __pyx_L1_error)
           }
-          ((__pyx_v_A[__pyx_v_i])[__pyx_v_j]) = (((__pyx_v_self->delta[__pyx_v_i])[__pyx_v_j]) + (__pyx_t_8 / __pyx_v_14spin_evolution_11SpinLattice_hbar));
+          ((__pyx_v_A[__pyx_v_i])[__pyx_v_j]) = (((__pyx_v_self->delta[__pyx_v_i])[__pyx_v_j]) - (__pyx_t_8 / __pyx_v_14spin_evolution_11SpinLattice_hbar));
 
           /* "spin_evolution/SpinLattice.pyx":272
  *                             self.L[2][i][j]*h[2]
- *                         A[i][j] = self.delta[i][j] + 0.5*self.dt*Lh_ij/hbar
- *                         b[i] += (self.delta[i][j] - 0.5*self.dt*Lh_ij/hbar)*self.M_arr[n][j]             # <<<<<<<<<<<<<<
+ *                         A[i][j] = self.delta[i][j] - 0.5*self.dt*Lh_ij/hbar
+ *                         b[i] += (self.delta[i][j] + 0.5*self.dt*Lh_ij/hbar)*self.M_arr[n][j]             # <<<<<<<<<<<<<<
  * 
  *                 linalg3D.inverse(A, A_inv)
  */
@@ -5753,12 +5753,12 @@ static void __pyx_f_14spin_evolution_11SpinLattice_11SpinLattice_time_step_c(str
             PyErr_SetString(PyExc_ZeroDivisionError, "float division");
             __PYX_ERR(0, 272, __pyx_L1_error)
           }
-          (__pyx_v_b[__pyx_t_7]) = ((__pyx_v_b[__pyx_t_7]) + ((((__pyx_v_self->delta[__pyx_v_i])[__pyx_v_j]) - (__pyx_t_8 / __pyx_v_14spin_evolution_11SpinLattice_hbar)) * ((__pyx_v_self->M_arr[__pyx_v_n])[__pyx_v_j])));
+          (__pyx_v_b[__pyx_t_7]) = ((__pyx_v_b[__pyx_t_7]) + ((((__pyx_v_self->delta[__pyx_v_i])[__pyx_v_j]) + (__pyx_t_8 / __pyx_v_14spin_evolution_11SpinLattice_hbar)) * ((__pyx_v_self->M_arr[__pyx_v_n])[__pyx_v_j])));
         }
       }
 
       /* "spin_evolution/SpinLattice.pyx":274
- *                         b[i] += (self.delta[i][j] - 0.5*self.dt*Lh_ij/hbar)*self.M_arr[n][j]
+ *                         b[i] += (self.delta[i][j] + 0.5*self.dt*Lh_ij/hbar)*self.M_arr[n][j]
  * 
  *                 linalg3D.inverse(A, A_inv)             # <<<<<<<<<<<<<<
  *                 for i in range(3):

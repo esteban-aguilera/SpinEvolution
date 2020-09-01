@@ -18,11 +18,11 @@ def main():
     mkdir('img')
     filenames = []
     for i in range(150):
-        for _ in range(1000):
+        for _ in range(10000):
             lat.time_step()
         
-        filenames.append(f'img/example-{i}.png')
-        lat.plot(S=10, filename=filenames[-1])
+        # filenames.append(f'img/example-{i}.png')
+        # lat.plot(S=10, filename=filenames[-1])
             
     print( np.array(lat.get_M()) )
     if(len(filenames) > 0):

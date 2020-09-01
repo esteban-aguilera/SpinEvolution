@@ -256,7 +256,7 @@ cdef class SpinLattice:
             if(self.idto[n] == -1):
                 linalg3D.cross(self.M_arr[n], self.h_arr[n], h)
                 for k in range(3):
-                    h[k] = self.h_arr[n][k] - self.alpha_arr[n]*h[k]
+                    h[k] = self.h_arr[n][k] + self.alpha_arr[n]*h[k]
                     
                     # displacement time step.
                     self.dr_arr[n][k] += self.v_arr[n][k]*self.dt
@@ -268,8 +268,8 @@ cdef class SpinLattice:
                     for j in range(3):
                         Lh_ij = self.L[0][i][j]*h[0] + self.L[1][i][j]*h[1] + \
                             self.L[2][i][j]*h[2]
-                        A[i][j] = self.delta[i][j] + 0.5*self.dt*Lh_ij/hbar
-                        b[i] += (self.delta[i][j] - 0.5*self.dt*Lh_ij/hbar)*self.M_arr[n][j]
+                        A[i][j] = self.delta[i][j] - 0.5*self.dt*Lh_ij/hbar
+                        b[i] += (self.delta[i][j] + 0.5*self.dt*Lh_ij/hbar)*self.M_arr[n][j]
 
                 linalg3D.inverse(A, A_inv)
                 for i in range(3):
