@@ -1,0 +1,1 @@
+Package to calculate the time evolution of a spin system interacting.  This program works with an external magnetic field, easy axis anistropy, Heisenberg's exchange interaction, and Dzyaloshinskii–Moriya interaction.
